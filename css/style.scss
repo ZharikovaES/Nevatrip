@@ -24,6 +24,7 @@ body{
     font-family: $fontFamaly, Helvetica, Arial, sans-serif;
     font-size: 15px;
     line-height: 1.4;
+    color: $dark1;
 }
 img{
     display: inline-block;
@@ -82,25 +83,44 @@ img{
     font-weight: 400;
     font-size: 16px;
     line-height: 1.4;
+    color: $dark3;
     &__nav {
         display: flex;
         justify-content: space-between;
     }
     &__list {}
-    &__list-item {}
+    &__list-item {
+    }
     &__top-list-item {}
 }
 .dke_item-drop-down {
     &__link {
         display: flex;
     }
-    &__icon {}
-    &__text {}
+    &__icon {
+        height: 42px;
+        width: 30px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    &__text {
+        padding-left: 15px;
+        padding-top: 10px;
+        padding-bottom: 10px;
+
+    }
     &__btn {
         display: flex;
     }
-    &__sublist {}
-    &__sublist-item {}
+    &__sublist {
+        padding-left: 45px;
+    }
+    &__sublist-item {
+        &+&{
+            margin-top: 10px;
+        }
+    }
     &__sublist-link {}
 }
 .nav-icon {
@@ -108,12 +128,16 @@ img{
 .filled-line {
 }
 .dke_menu-mobile-header {
+    background-color: $dark2;
     &__nav {
     }
-    &__top-list {}
+    &__top-list {
+        padding: 25px 0;
+    }
     &__bottom {}
 }
 .dke_item-drop-down-mobile {
+    color: #fff;
     &__head {
         display: flex;
     }

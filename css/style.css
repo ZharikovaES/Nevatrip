@@ -8,13 +8,6 @@
   font-weight: 400;
   font-style: normal;
 }
-@font-face {
-  font-family: "OpenSans";
-  font-display: block;
-  src: url("../fonts/OpenSans-SemiBold.woff2") format("woff2"), url("../fonts/OpenSans-SemiBold.woff") format("woff");
-  font-weight: 600;
-  font-style: normal;
-}
 html, body {
   margin: 0;
   padding: 0;
@@ -63,6 +56,7 @@ body {
   font-family: "OpenSans", Helvetica, Arial, sans-serif;
   font-size: 15px;
   line-height: 1.4;
+  color: #312d2d;
 }
 
 img {
@@ -103,6 +97,7 @@ img {
   font-weight: 400;
   font-size: 16px;
   line-height: 1.4;
+  color: #242424;
 }
 .dke_drop-down-menu__nav {
   display: flex;
@@ -111,8 +106,35 @@ img {
 .dke_item-drop-down__link {
   display: flex;
 }
+.dke_item-drop-down__icon {
+  height: 42px;
+  width: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.dke_item-drop-down__text {
+  padding-left: 15px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
 .dke_item-drop-down__btn {
   display: flex;
+}
+.dke_item-drop-down__sublist {
+  padding-left: 45px;
+}
+.dke_item-drop-down__sublist-item + .dke_item-drop-down__sublist-item {
+  margin-top: 10px;
+}
+.dke_menu-mobile-header {
+  background-color: #272D30;
+}
+.dke_menu-mobile-header__top-list {
+  padding: 25px 0;
+}
+.dke_item-drop-down-mobile {
+  color: #fff;
 }
 .dke_item-drop-down-mobile__head {
   display: flex;
