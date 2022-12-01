@@ -1,0 +1,125 @@
+/*Default font*/
+/*Colors*/
+/*Max-width of screen*/
+@font-face {
+  font-family: "OpenSans";
+  font-display: block;
+  src: url("../fonts/OpenSans-Regular.woff2") format("woff2"), url("../fonts/OpenSans-Regular.woff") format("woff");
+  font-weight: 400;
+  font-style: normal;
+}
+@font-face {
+  font-family: "OpenSans";
+  font-display: block;
+  src: url("../fonts/OpenSans-SemiBold.woff2") format("woff2"), url("../fonts/OpenSans-SemiBold.woff") format("woff");
+  font-weight: 600;
+  font-style: normal;
+}
+html, body {
+  margin: 0;
+  padding: 0;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+h1, h2, h3, h4, h5, h6, p, ul {
+  margin: 0;
+  padding: 0;
+}
+
+a {
+  display: inline-block;
+  text-decoration: none;
+  color: inherit;
+}
+
+ul {
+  list-style-type: none;
+}
+
+button {
+  display: inline-block;
+  cursor: pointer;
+  outline: none;
+  border: none;
+  background: none;
+  padding: 0;
+}
+
+input, textarea {
+  outline: none;
+  border: none;
+}
+
+img {
+  display: inline-block;
+}
+
+body {
+  font-family: "OpenSans", Helvetica, Arial, sans-serif;
+  font-size: 15px;
+  line-height: 1.4;
+}
+
+img {
+  display: inline-block;
+}
+
+.preload * {
+  transition: none !important;
+}
+
+.dke_container {
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 0 15px;
+}
+@media screen and (max-width: 970) {
+  .dke_container {
+    max-width: 970px;
+  }
+}
+@media screen and (max-width: 1180) {
+  .dke_container {
+    max-width: 750px;
+  }
+}
+@media screen and (max-width: 970) {
+  .dke_container {
+    max-width: 100%;
+  }
+}
+
+.dke_drop-down-menu {
+  padding: 40px 0 50px;
+  border: 1px solid #C0C0C0;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.25);
+}
+.dke_drop-down-menu {
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 1.4;
+}
+.dke_drop-down-menu__nav {
+  display: flex;
+  justify-content: space-between;
+}
+.dke_item-drop-down__link {
+  display: flex;
+}
+.dke_item-drop-down__btn {
+  display: flex;
+}
+.dke_item-drop-down-mobile__head {
+  display: flex;
+}
+.dke_item-drop-down-mobile__head-link {
+  display: flex;
+}
+.dke_subitem-drop-down__head {
+  display: flex;
+}/*# sourceMappingURL=style.css.map */
