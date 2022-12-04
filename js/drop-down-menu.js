@@ -12,7 +12,10 @@ function dropDownMenu() {
     if (btnTopHeader && btnBottomHeader && dropDownMenu && mobileMenu && btnsDropDownMenu && btnsDropDownMenuMobile) {
 
         // открытие/закрытие меню на desktop
-        btnTopHeader.addEventListener("click", e => {
+        btnTopHeader.addEventListener("click", function() {
+            this.disabled = true;
+
+            toggleAttr(this, "aria-expanded");
             dropDownMenu.classList.toggle("_active");
 
             if (dropDownMenu.style.maxHeight) dropDownMenu.style.maxHeight = null;
@@ -21,42 +24,50 @@ function dropDownMenu() {
             else dropDownMenu.style.overflowY = "auto";
 
             isOpenMenu = !isOpenMenu;
+            this.disabled = false;
         });
 
         // открытие/закрытие бургер-меню
-        btnBottomHeader.addEventListener("click", e => {
+        btnBottomHeader.addEventListener("click", function() {
+            this.disabled = true;
+
+            toggleAttr(this, "aria-expanded");
             if (mobileMenu.style.left) mobileMenu.style.left = null;
             else mobileMenu.style.left = 0;
 
             isOpenMenu = !isOpenMenu;
+            this.disabled = false;
         });
 
         // открытие/закрытие внутренних списков меню на desktop
         btnsDropDownMenu.forEach(element => {
             element.addEventListener("click", e => {
-                
-                element.style.pointerEvents = "none";
+                element.disabled = true;
                 element.classList.toggle("_active");
     
+                const dropDownParentEl = element?.parentElement;
                 const dropDownSublist = element?.nextElementSibling;
     
+                if (dropDownParentEl) toggleAttr(dropDownParentEl, "aria-expanded");
+                    
                 if (dropDownSublist) {
+                    dropDownSublist.classList.toggle("_active");
                     if (dropDownSublist.style.maxHeight) dropDownSublist.style.maxHeight = null;
                     else dropDownSublist.style.maxHeight = "500px";
                     if (dropDownSublist.style.overflowY) dropDownSublist.style.overflowY = null;
                     else dropDownSublist.style.overflowY = "auto";
                 }
     
-                element.style.pointerEvents = null;
+                element.disabled = false;
             })
         });
 
         // открытие/закрытие внутренних списков бургер-меню
         btnsDropDownMenuMobile.forEach(element => {
             element.addEventListener("click", e => {
-                
+                element.disabled = true;
                 element.classList.toggle("_active");
-                element.style.pointerEvents = "none";
+
                 const btnArrow = element.querySelector(".dke_item-drop-down-mobile__head-icon_arrow");
 
                 if (btnArrow) {
@@ -64,7 +75,10 @@ function dropDownMenu() {
                     else btnArrow.style.tranform = "roteate(180deg)";
                 }
     
+                const dropDownParentEl = element?.parentElement;
                 const dropDownSublist = element?.nextElementSibling;
+    
+                if (dropDownParentEl) toggleAttr(dropDownParentEl, "aria-expanded");
     
                 if (dropDownSublist) {
                     if (dropDownSublist.style.maxHeight) dropDownSublist.style.maxHeight = null;
@@ -75,7 +89,7 @@ function dropDownMenu() {
                     dropDownSublist.classList.toggle("_active");
                 }
     
-                element.style.pointerEvents = null;
+                element.disabled = false;
             })
         });
 
