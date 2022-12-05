@@ -144,7 +144,7 @@ img {
   flex-wrap: wrap;
   justify-content: space-between;
   row-gap: 6px;
-  padding: 25px 15px;
+  padding: 25px 0;
 }
 .dke_menu-mobile svg {
   fill: #F4F4F4;
@@ -334,12 +334,12 @@ img {
 .dke_item-drop-down-mobile__body {
   transition: all 0.3s ease-out;
   padding: 0 15px;
-  overflow: hidden;
+  overflow-y: hidden;
   max-height: 0;
   border-top: 0 solid transparent;
 }
 .dke_item-drop-down-mobile__body._active {
-  padding: 10px 15px 20px;
+  padding: 10px 0 20px;
   border-top: 1px solid #929292;
   margin-bottom: 15px;
   max-height: 1000px;
@@ -407,12 +407,12 @@ img {
 .dke_bottom-menu-mobile__list {
   font-size: 20px;
 }
-.dke_bottom-menu-mobile__list_hr {
+.dke_bottom-menu-mobile__list._hr {
   padding-top: 20px;
   margin-top: 20px;
   position: relative;
 }
-.dke_bottom-menu-mobile__list_hr::before {
+.dke_bottom-menu-mobile__list._hr::before {
   content: "";
   display: block;
   position: absolute;

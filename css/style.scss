@@ -150,7 +150,9 @@ img{
             flex-wrap: wrap;
             justify-content: space-between;
             row-gap: 6px;
-            padding: 25px 15px;
+            padding: 25px 0;
+
+            
         }
         &__bottom {}
     
@@ -391,12 +393,12 @@ img{
     &__body {
         transition: all .3s ease-out;
         padding: 0 15px;
-        overflow: hidden;
+        overflow-y: hidden;
         max-height: 0;
         border-top: 0 solid transparent;
 
         &._active {
-            padding: 10px 15px 20px;
+            padding: 10px 0 20px;
             border-top: 1px solid $gray2;
             margin-bottom: 15px;
             max-height: 1000px;
@@ -478,7 +480,7 @@ img{
     &__list {
         font-size: 20px;
 
-        &_hr{
+        &._hr{
             padding-top: 20px;
             margin-top: 20px;
             position: relative;

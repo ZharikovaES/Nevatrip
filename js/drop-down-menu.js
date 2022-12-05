@@ -30,15 +30,20 @@ function dropDownMenu() {
             if (dropDownMenu.style.maxHeight) dropDownMenu.style.maxHeight = null;
             else dropDownMenu.style.maxHeight = "80vh";
 
+            if (mobileMenu.style.left) {
+                closeMobileMenu();
+            }
+
             isOpenMenu = !isOpenMenu;
             this.disabled = false;
         });
     }
 
     // открытие/закрытие бургер-меню
-    if (navbar && btnNavbar && mobileMenu) {
+    if (navbar && btnNavbar && mobileMenu && dropDownMenu) {
         btnNavbar.addEventListener("click", function() {
             this.disabled = true;
+
             const bottomHeight = navbar.getBoundingClientRect()?.bottom;
             mobileMenu.style.top = bottomHeight + "px";
 
@@ -48,6 +53,11 @@ function dropDownMenu() {
             toggleAttr(this, "aria-expanded");
             if (mobileMenu.style.left) mobileMenu.style.left = null;
             else mobileMenu.style.left = 0;
+
+
+            if (dropDownMenu.classList.contains("_active")) {
+                closeDropDownMenu();
+            }
 
             isOpenMenu = !isOpenMenu;
             this.disabled = false;
@@ -111,7 +121,8 @@ function dropDownMenu() {
                     dropDownSublist.classList.toggle("_active");
 
                 }
-    
+
+
                 element.disabled = false;
             })
         });
@@ -139,6 +150,9 @@ function dropDownMenu() {
     // закрытие бургер-меню
     function closeMobileMenu() {
         mobileMenu.style.left = null;
+
+        toggleAttr(btnNavbar, "aria-expanded");
+
     }
 
     // закрытие меню на desktop
@@ -147,11 +161,16 @@ function dropDownMenu() {
 
         dropDownMenu.style.maxHeight = null;
         dropDownMenu.style.overflowY = null;
+        navbar.classList.remove("_active");
+
+        toggleAttr(btnTopHeader, "aria-expanded");
     }
 
     // открытие бургер-меню
     function openMobileMenu() {
         mobileMenu.style.left = 0;
+
+        toggleAttr(btnNavbar, "aria-expanded");
     }
 
     // закртие меню на desktop
@@ -160,5 +179,7 @@ function dropDownMenu() {
 
         dropDownMenu.style.maxHeight = "80vh";
         dropDownMenu.style.overflowY = "auto";
+
+        toggleAttr(btnTopHeader, "aria-expanded");
     }
 }
