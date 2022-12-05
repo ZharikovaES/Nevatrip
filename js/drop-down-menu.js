@@ -12,9 +12,8 @@ function dropDownMenu() {
 
     let isOpenMenu = false;
     
-    if (btnTopHeader && navbar && btnNavbar && dropDownMenu && mobileMenu && btnsDropDownMenu && btnsDropDownMenuMobile) {
-
-        // открытие/закрытие меню на desktop
+    // открытие/закрытие меню на desktop
+    if (btnTopHeader && navbar && dropDownMenu){
         btnTopHeader.addEventListener("click", function() {
             this.disabled = true;
 
@@ -34,8 +33,10 @@ function dropDownMenu() {
             isOpenMenu = !isOpenMenu;
             this.disabled = false;
         });
+    }
 
-        // открытие/закрытие бургер-меню
+    // открытие/закрытие бургер-меню
+    if (navbar && btnNavbar && mobileMenu) {
         btnNavbar.addEventListener("click", function() {
             this.disabled = true;
             const bottomHeight = navbar.getBoundingClientRect()?.bottom;
@@ -51,8 +52,10 @@ function dropDownMenu() {
             isOpenMenu = !isOpenMenu;
             this.disabled = false;
         });
+    }   
 
-        // открытие/закрытие внутренних списков меню на desktop
+    // открытие/закрытие внутренних списков меню на desktop
+    if (btnsDropDownMenu) {
         btnsDropDownMenu.forEach(element => {
             element.addEventListener("click", e => {
                 element.disabled = true;
@@ -78,8 +81,10 @@ function dropDownMenu() {
                 element.disabled = false;
             })
         });
+    }
 
-        // открытие/закрытие внутренних списков бургер-меню
+    // открытие/закрытие внутренних списков бургер-меню
+    if (btnsDropDownMenuMobile) {
         btnsDropDownMenuMobile.forEach(element => {
             element.addEventListener("click", e => {
                 element.disabled = true;
@@ -105,60 +110,55 @@ function dropDownMenu() {
 
                     dropDownSublist.classList.toggle("_active");
 
-                    if (dropDownSublist.style.maxHeight) dropDownSublist.style.maxHeight = null;
-                    else dropDownSublist.style.maxHeight = "1000px";
-
                 }
     
                 element.disabled = false;
             })
         });
+    }    
+    window.addEventListener('resize', () => {
+        const currentWidthWindow = Math.max(window.innerWidth, document.documentElement.clientWidth, document.body.clientWidth, 0);
 
-        window.addEventListener('resize', () => {
-            const currentWidthWindow = Math.max(window.innerWidth, document.documentElement.clientWidth, document.body.clientWidth, 0);
-
-            // открытие/зыкрытие меню в зависимости от ширины экрана
-            if (isOpenMenu) {
-                if (currentWidthWindow > BREAKPOINT3) {
-                    document.body.style.overflowY = null;
-                    
-                    closeMobileMenu();
-                    openDropDownMenu();
-                } else {
-                    document.body.style.overflowY = "hidden";
-
-                    closeDropDownMenu();
-                    openMobileMenu();
-                }
+        // открытие/зыкрытие меню в зависимости от ширины экрана
+        if (isOpenMenu) {
+            if (currentWidthWindow > BREAKPOINT3) {
+                document.body.style.overflowY = null;
+                
+                if (mobileMenu) closeMobileMenu();
+                if (dropDownMenu) openDropDownMenu();
+            } else {
+                document.body.style.overflowY = "hidden";
+                
+                if (dropDownMenu) closeDropDownMenu();
+                if (mobileMenu) openMobileMenu();
             }
-        });
-
-
-        // закрытие бургер-меню
-        function closeMobileMenu() {
-            mobileMenu.style.left = null;
         }
+    });
 
-        // закрытие меню на desktop
-        function closeDropDownMenu() {
-            dropDownMenu.classList.remove("_active");
 
-            dropDownMenu.style.maxHeight = null;
-            dropDownMenu.style.overflowY = null;
-        }
+    // закрытие бургер-меню
+    function closeMobileMenu() {
+        mobileMenu.style.left = null;
+    }
 
-        // открытие бургер-меню
-        function openMobileMenu() {
-            mobileMenu.style.left = 0;
-        }
+    // закрытие меню на desktop
+    function closeDropDownMenu() {
+        dropDownMenu.classList.remove("_active");
 
-        // закртие меню на desktop
-        function openDropDownMenu() {
-            dropDownMenu.classList.add("_active");
+        dropDownMenu.style.maxHeight = null;
+        dropDownMenu.style.overflowY = null;
+    }
 
-            dropDownMenu.style.maxHeight = "80vh";
-            dropDownMenu.style.overflowY = "auto";
-        }
+    // открытие бургер-меню
+    function openMobileMenu() {
+        mobileMenu.style.left = 0;
+    }
 
+    // закртие меню на desktop
+    function openDropDownMenu() {
+        dropDownMenu.classList.add("_active");
+
+        dropDownMenu.style.maxHeight = "80vh";
+        dropDownMenu.style.overflowY = "auto";
     }
 }

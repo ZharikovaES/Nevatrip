@@ -18,6 +18,10 @@ $dark1: #312d2d;
 $dark2: #272D30;
 $dark3: #242424;
 $dark4: #2C3438;
+$dark5: #363232;
+$dark6: #484444;
+$dark7: #423E3E;
+
 $gray1: #C8C8C8;
 $gray2: #929292;
 $blue1: #49AADA;
@@ -70,7 +74,13 @@ img{
         left: 0;
         width: 100%;
         z-index: 3;
-        background-color: $dark2;
+        
+        &._cool-dark {
+            background-color: $dark2;
+        }
+        &._warm-dark {
+            background-color: $dark5;
+        }
         
         &::after {
             content: "";
@@ -104,7 +114,33 @@ img{
         z-index: 4;
 
         color: #fff;
-        background-color: $dark2;
+
+        &._cool-dark {
+            background-color: $dark2;
+
+            .dke_drop-down-menu__top-list-link{
+                &:hover, &:focus {
+                    background-color: $dark4;
+                }        
+            }
+
+            .dke_item-drop-down-mobile__body, .dke_subitem-drop-down__body{
+                background-color: $dark4;
+            }
+        }
+        &._warm-dark {
+            background-color: $dark5;
+
+            .dke_drop-down-menu__top-list-link{
+                &:hover, &:focus {
+                    background-color: $dark6;
+                }        
+            }
+
+            .dke_item-drop-down-mobile__body, .dke_subitem-drop-down__body{
+                background-color: $dark7;
+            }
+        }
         
 
         &__nav {
@@ -219,11 +255,6 @@ img{
         height: 100%;
         text-align: center;
         transition: all .3s ease-out;
-
-        &:hover, &:focus {
-            background-color: $dark4;
-        }
-
     }
 }
 .dke_item-drop-down {
@@ -323,6 +354,7 @@ img{
         cursor: pointer;
         width: 100%;
         color: #fff;
+        text-align: left;
 
         &._active {
             .dke_item-drop-down-mobile__head-icon_arrow{
@@ -358,14 +390,16 @@ img{
     }
     &__body {
         transition: all .3s ease-out;
-        background-color: $dark4;
         padding: 0 15px;
         overflow: hidden;
         max-height: 0;
+        border-top: 0 solid transparent;
+
         &._active {
             padding: 10px 15px 20px;
             border-top: 1px solid $gray2;
             margin-bottom: 15px;
+            max-height: 1000px;
     
         }
     }
@@ -393,7 +427,6 @@ img{
     }
 }
 .dke_subitem-drop-down {
-    font-size: 17px;
     &__head {
         display: flex;
         font-size: 20px;
@@ -413,12 +446,22 @@ img{
     &__head-title {
     }
     &__body {
-        padding-top: 8px;
-        padding-bottom: 15px;
+        transition: all .3s ease-out;
+        background-color: $dark4;
+        overflow: hidden;
+        max-height: 0;
 
+        &._active {
+            padding-top: 8px;
+            padding-bottom: 15px;    
+            max-height: 1000px;
+        }
     }
     &__list {
+        font-size: 17px;
         color: $gray1;
+
+
     }
     &__list-item {
 
@@ -457,9 +500,3 @@ img{
     &__list-item {}
 }
 
-.box{
-    display: block;
-    height: 200vh;
-    width: 400px;
-    background-color: #242424;
-}
