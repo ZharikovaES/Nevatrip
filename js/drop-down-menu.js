@@ -1,35 +1,48 @@
 
 function dropDownMenu() {
+    const TIME = 3000;
+
     const btnTopHeader = document.querySelector(".dke_top-header__btn");
-    const btnBottomHeader = document.querySelector(".dke_bottom-header__btn");
-    const mobileMenu = document.querySelector(".dke_menu-mobile-header");
-    const dropDownMenu = document.querySelector(".dke_drop-down-menu");
+    const navbar = document.querySelector(".dke_navbar");
+    const btnNavbar = document.querySelector(".dke_header-navbar__btn");
+    const mobileMenu = document.querySelector(".dke_menu-mobile");
+    const dropDownMenu = document.querySelector(".dke_drop-down-navbar");
     const btnsDropDownMenu = document.querySelectorAll(".dke_item-drop-down__btn");
     const btnsDropDownMenuMobile = document.querySelectorAll(".dke_item-drop-down-mobile__head");
 
     let isOpenMenu = false;
     
-    if (btnTopHeader && btnBottomHeader && dropDownMenu && mobileMenu && btnsDropDownMenu && btnsDropDownMenuMobile) {
+    if (btnTopHeader && navbar && btnNavbar && dropDownMenu && mobileMenu && btnsDropDownMenu && btnsDropDownMenuMobile) {
 
         // открытие/закрытие меню на desktop
         btnTopHeader.addEventListener("click", function() {
             this.disabled = true;
 
             toggleAttr(this, "aria-expanded");
+
+            if (dropDownMenu.style.overflowY) dropDownMenu.style.overflowY = null;
+            else setTimeout(e => {
+                dropDownMenu.style.overflowY = "auto";
+            }, TIME);
+
             dropDownMenu.classList.toggle("_active");
+            navbar.classList.toggle("_active");
 
             if (dropDownMenu.style.maxHeight) dropDownMenu.style.maxHeight = null;
             else dropDownMenu.style.maxHeight = "80vh";
-            if (dropDownMenu.style.overflowY) dropDownMenu.style.overflowY = null;
-            else dropDownMenu.style.overflowY = "auto";
 
             isOpenMenu = !isOpenMenu;
             this.disabled = false;
         });
 
         // открытие/закрытие бургер-меню
-        btnBottomHeader.addEventListener("click", function() {
+        btnNavbar.addEventListener("click", function() {
             this.disabled = true;
+            const bottomHeight = navbar.getBoundingClientRect()?.bottom;
+            mobileMenu.style.top = bottomHeight + "px";
+
+            if (document.body.style.overflowY) document.body.style.overflowY = null;
+            else document.body.style.overflowY = "hidden";
 
             toggleAttr(this, "aria-expanded");
             if (mobileMenu.style.left) mobileMenu.style.left = null;
@@ -51,11 +64,15 @@ function dropDownMenu() {
                 if (dropDownParentEl) toggleAttr(dropDownParentEl, "aria-expanded");
                     
                 if (dropDownSublist) {
-                    dropDownSublist.classList.toggle("_active");
-                    if (dropDownSublist.style.maxHeight) dropDownSublist.style.maxHeight = null;
-                    else dropDownSublist.style.maxHeight = "500px";
                     if (dropDownSublist.style.overflowY) dropDownSublist.style.overflowY = null;
-                    else dropDownSublist.style.overflowY = "auto";
+                    else setTimeout(e => {
+                        dropDownSublist.style.overflowY = "auto";
+                    }, TIME);
+    
+                    dropDownSublist.classList.toggle("_active");
+
+                    if (dropDownSublist.style.maxHeight) dropDownSublist.style.maxHeight = null;
+                    else dropDownSublist.style.maxHeight = "3000px";
                 }
     
                 element.disabled = false;
@@ -81,12 +98,16 @@ function dropDownMenu() {
                 if (dropDownParentEl) toggleAttr(dropDownParentEl, "aria-expanded");
     
                 if (dropDownSublist) {
-                    if (dropDownSublist.style.maxHeight) dropDownSublist.style.maxHeight = null;
-                    else dropDownSublist.style.maxHeight = "1000px";
                     if (dropDownSublist.style.overflowY) dropDownSublist.style.overflowY = null;
-                    else dropDownSublist.style.overflowY = "auto";
+                    else setTimeout(e => {
+                        dropDownSublist.style.overflowY = "auto";
+                    }, TIME);
 
                     dropDownSublist.classList.toggle("_active");
+
+                    if (dropDownSublist.style.maxHeight) dropDownSublist.style.maxHeight = null;
+                    else dropDownSublist.style.maxHeight = "1000px";
+
                 }
     
                 element.disabled = false;
@@ -99,9 +120,13 @@ function dropDownMenu() {
             // открытие/зыкрытие меню в зависимости от ширины экрана
             if (isOpenMenu) {
                 if (currentWidthWindow > BREAKPOINT3) {
+                    document.body.style.overflowY = null;
+                    
                     closeMobileMenu();
                     openDropDownMenu();
                 } else {
+                    document.body.style.overflowY = "hidden";
+
                     closeDropDownMenu();
                     openMobileMenu();
                 }

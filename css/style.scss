@@ -62,44 +62,94 @@ img{
     &_bottom-header {}
 
 
-    &_drop-down-menu {
-        box-shadow: 0px 2px 4px rgb(0 0 0 / 25%);
-        position: absolute;
+    &_item-drop-down {
+    }
+    &_navbar{
+        position: sticky;
+        top: 0;
         left: 0;
         width: 100%;
         z-index: 3;
-    }
-    &_item-drop-down {
-    }
-    &_menu-mobile-header {
-        svg {
-            fill: #F4F4F4;
+        background-color: $dark2;
+        
+        &::after {
+            content: "";
+            display: block;
+            position: absolute;
+            z-index: 2;
+            width: 100%;
+            height: 100vh;
+            background-color: rgba(0, 0, 0, 0.5);
+            transition: all .3s ease-out;
+            visibility: hidden;
+            opacity: 0;
         }
+
+        &._active {
+
+            &::after {
+                visibility: visible;
+                opacity: 1;    
+            }
+        }
+
     }
-    &_item-drop-down-mobile {}
-    &_subitem-drop-down {}
-    &_bottom-mobile-header {}
-}
-.dke_header {
-    position: relative;
-    &__top {}
-    &__top-wrapper {}
-    &__bottom {}
-    &__drop-down-menu {}
-    &__menu-mobile {
+    &_menu-mobile {
         transition: left .3s ease-out;
         position: fixed;
         left: -110%;
         width: 100%;
         height: 100%;
         overflow-y: auto;
-        z-index: 3;
+        z-index: 4;
+
+        color: #fff;
+        background-color: $dark2;
+        
+
+        &__nav {
+        }
+        &__top-list {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            row-gap: 6px;
+            padding: 25px 15px;
+        }
+        &__bottom {}
+    
+
+        svg {
+            fill: #F4F4F4;
+        }
+    }
+    &_drop-down-navbar {
+        width: 100%;
+    }
+    &_item-drop-down-mobile {}
+    &_subitem-drop-down {}
+    &_bottom-menu-mobile {}
+
+
+}
+.dke_header {
+    position: relative;
+    z-index: 5;
+}
+.dke {
+    &_drop-down-navbar {}
+}
+.dke_navbar {
+    &__header {}
+    &__drop-down-menu {}
+}
+.dke_header-navbar {
+    &__btn {
+        color: white;
     }
 }
-.dke_bottom-header {
-    &__btn {}
-}
-.dke_drop-down-menu {
+.dke_drop-down-navbar {
+    box-shadow: 0px 2px 4px rgb(0 0 0 / 25%);
     background-color: #fff;
     font-weight: 400;
     font-size: 16px;
@@ -111,9 +161,13 @@ img{
     transition: all .3s ease-out;
     border: 0 solid transparent;
 
+    position: absolute;
+    z-index: 3;
+
     &._active {
         padding: 40px 0 50px;
         border: 1px solid #C0C0C0;
+
     }
 
     @media screen and (max-width: 1050px) {
@@ -127,6 +181,11 @@ img{
     &__list {
         flex: 0 1 32%
     }
+
+
+}
+
+.dke_drop-down-menu {
     &__list-item {
     }
     &__top-list {
@@ -254,20 +313,6 @@ img{
         }
     }
 }
-.dke_menu-mobile-header {
-    color: #fff;
-    background-color: $dark2;
-    &__nav {
-    }
-    &__top-list {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: space-between;
-        row-gap: 6px;
-        padding: 25px 15px;
-    }
-    &__bottom {}
-}
 .dke_item-drop-down-mobile {
 
     &__head {
@@ -386,7 +431,7 @@ img{
         width: 100%;
     }
 }
-.dke_bottom-mobile-header {
+.dke_bottom-menu-mobile {
     &__list {
         font-size: 20px;
 
@@ -412,3 +457,9 @@ img{
     &__list-item {}
 }
 
+.box{
+    display: block;
+    height: 200vh;
+    width: 400px;
+    background-color: #242424;
+}
