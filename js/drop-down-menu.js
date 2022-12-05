@@ -4,6 +4,7 @@ function dropDownMenu() {
 
     const btnTopHeader = document.querySelector(".dke_top-header__btn");
     const navbar = document.querySelector(".dke_navbar");
+    const headerNavbar = document.querySelector(".dke_header-navbar");
     const btnNavbar = document.querySelector(".dke_header-navbar__btn");
     const mobileMenu = document.querySelector(".dke_menu-mobile");
     const dropDownMenu = document.querySelector(".dke_drop-down-navbar");
@@ -13,7 +14,7 @@ function dropDownMenu() {
     let isOpenMenu = false;
     
     // открытие/закрытие меню на desktop
-    if (btnTopHeader && navbar && dropDownMenu){
+    if (btnTopHeader && navbar && dropDownMenu && headerNavbar){
         btnTopHeader.addEventListener("click", function() {
             this.disabled = true;
 
@@ -26,6 +27,7 @@ function dropDownMenu() {
 
             dropDownMenu.classList.toggle("_active");
             navbar.classList.toggle("_active");
+            headerNavbar.classList.toggle("_active");
 
             if (dropDownMenu.style.maxHeight) dropDownMenu.style.maxHeight = null;
             else dropDownMenu.style.maxHeight = "80vh";
@@ -162,6 +164,7 @@ function dropDownMenu() {
         dropDownMenu.style.maxHeight = null;
         dropDownMenu.style.overflowY = null;
         navbar.classList.remove("_active");
+        headerNavbar.classList.remove("_active");
 
         toggleAttr(btnTopHeader, "aria-expanded");
     }
